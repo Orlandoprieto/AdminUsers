@@ -1,0 +1,21 @@
+.container-input{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+input {
+    height: 40px;
+    border: 3px solid #5A9EF1;
+    font-size: 16px;
+    padding: 20px 15px;
+}
+
+
+
+input[type= "password"]{
+    font-size: 25px;
+}
+
