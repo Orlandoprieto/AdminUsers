@@ -1,0 +1,29 @@
+.container_notFound{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_notFound {
+    gap: 40px;
+    padding: 50px 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 90%;
+    max-width: 400px;
+}
+
+.container_info_notFound{
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+span{
+    text-align: center;
+}

@@ -1,6 +1,7 @@
-import { Login } from "./pages/loginPage/Login"
+
 import { useEffect } from "react"
 import { configInit } from './config/config'
+import RoutesApp from "./routes/RoutesApp"
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
   })
 
   return (
-    <Login/>
+    <RoutesApp/>
   )
 }
 
