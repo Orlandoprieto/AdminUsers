@@ -7,6 +7,12 @@ import Button from "../../components/button/Button"
 import icon from '../../assets/iconUsers.png'
 
 export function Login() {
+
+   const createUser = (data: any) => {
+      console.log(data)
+      console.log("hola")
+   }
+
    return (
       <div className="container">
          <div className="card">
@@ -18,12 +24,13 @@ export function Login() {
             </div>
 
             <Form
+               handleSubmit={createUser}
                render={({ handleChange }) => {
                   return (
                      <>
                         <Input type="email" field="Correo electronico" name="email" handleChange={handleChange} />
                         <Input type="password" field="Contraseña" name="password" handleChange={handleChange} />
-                        <Button isSubmit title="Iniciar sesion" />
+                        <Button isSubmit title="Iniciar sesion"/>
                      </>
                   )
                }}

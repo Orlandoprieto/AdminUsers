@@ -1,18 +1,16 @@
 import { useState } from "react";
-import './formStyle.css'
+import './formStyle.css';
 
 interface FormProps {
+   handleSubmit: (data: any) => void
    render: ({
-      data,
       handleChange,
    }: {
-      data: Record<string, string>;
       handleChange: (name: string, value: string) => void;
-
    }) => React.ReactNode
 }
 
-export default function Form({ render }: FormProps) {
+export default function Form({ render, handleSubmit }: FormProps) {
    const [data, setData] = useState({})
 
    const handleChange = (name: string, value: string) => {
@@ -20,9 +18,14 @@ export default function Form({ render }: FormProps) {
       console.log(data)
    }
 
+   const onSubmit = (e: React.FormEvent) => {
+      e.preventDefault()
+      handleSubmit(data)
+   }
+
    return (
-      <form>
-         { render({ handleChange, data }) }
+      <form onSubmit={onSubmit}>
+         { render({ handleChange }) } 
       </form>
    )
 }
