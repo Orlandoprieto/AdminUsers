@@ -15,7 +15,6 @@ export default function Form({ render, handleSubmit }: FormProps) {
 
    const handleChange = (name: string, value: string) => {
       setData(prev => ({ ...prev, [name]: value }))
-      console.log(data)
    }
 
    const onSubmit = (e: React.FormEvent) => {

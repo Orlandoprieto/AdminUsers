@@ -1,7 +1,7 @@
-
 import { useEffect } from "react"
 import { configInit } from './config/config'
 import RoutesApp from "./routes/RoutesApp"
+import UserLogged from "./context/UserLogged"
 
 function App() {
 
@@ -10,7 +10,9 @@ function App() {
   })
 
   return (
-    <RoutesApp/>
+    <UserLogged>
+      <RoutesApp />
+    </UserLogged>
   )
 }
 

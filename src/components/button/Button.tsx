@@ -1,17 +1,27 @@
 import './buttonStyles.css'
 
 interface ButtonProps {
-   isSubmit: boolean,
-   title: string,
+   isSubmit?: boolean,
+   title?: string,
    icon?: string | undefined,
 }
 
-export default function Button({ title, icon, isSubmit }: ButtonProps) {
+export function ButtonPrimary({ title, isSubmit = false }: ButtonProps) {
    return (
-      <button type={isSubmit ? 'submit' : 'button'}>
+      <button className='buttonPrimary' type={isSubmit ? 'submit' : 'button'}>
          <div>
-            {icon && <img src={icon} />}
             <span>{title}</span>
+         </div>
+      </button>
+   )
+}
+
+export function ButtonSecondary({ title, icon, isSubmit = false }: ButtonProps) {
+   return (
+      <button className='buttonSecondary' type={isSubmit ? 'submit' : 'button'}>
+         <div className='container_txt'>
+            {icon && <img src={icon} />}
+            {title && <span>{title}</span>}
          </div>
       </button>
    )

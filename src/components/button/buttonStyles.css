@@ -1,12 +1,40 @@
-button{
+.buttonPrimary{
+    width: 100%;
     background-color: #5A9EF1;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     height: 40px;
-    border-radius: 10px;
-    font-size: 18px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-button:hover{
+.buttonSecondary{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.container_txt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container_txt img{
+    width: 20px;
+}
+
+.buttonPrimary:hover{
     background-color: #4790e8;
+}
+
+.buttonSecondary:hover{
+    background-color: #f7f7f7;
 }

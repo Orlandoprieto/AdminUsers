@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "baseUrl": ".", // Define la base de la raíz del proyecto
+    "paths": {
+      "@assets/*": ["./assets/*"] // Configura la ruta a la carpeta assets
+    }
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

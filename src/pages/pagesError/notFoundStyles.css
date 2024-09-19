@@ -1,4 +1,4 @@
-.container_notFound{
+.container_error{
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.card_notFound {
+.card_error {
     gap: 40px;
     padding: 50px 30px;
     display: flex;
@@ -16,7 +16,7 @@
     max-width: 400px;
 }
 
-.container_info_notFound{
+.container_info_error{
     gap: 15px;
     display: flex;
     align-items: center;
