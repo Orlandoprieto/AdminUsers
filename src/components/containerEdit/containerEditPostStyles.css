@@ -1,28 +1,31 @@
-.containerCardPost{
+.container_create{
     display: flex;
     flex-direction: column;
     height: 100%; 
     width: 100%;
-
+    
 }
 
-.actions{
+.actions_container_create{
     display: flex;
     justify-content: space-between;
 }
 
-.actions>*{
+.actions_container_create>:first-child{
+    min-width: 400px;
+}
+
+.actions_container_create>*{
     display: flex;
-    width: 12%;
+    width: 30%;
 }
 
-.actions>:last-child{
-    justify-content: flex-end;
-    min-width: 150px;
-}
 
-.list_post{
-    flex-wrap: wrap;
+.form_create{
+    display: flex;
+    justify-content: center;
     padding: 20px 0;
     display: flex;
+    width: 100%;
 }
+

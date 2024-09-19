@@ -1,28 +1,60 @@
-.cardPost{
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    height: 300px;
-    width: 25%;
-    gap: 15px; 
-    border: 1px solid rgb(221, 221, 221);
-    padding: 25px;
+
+@media (min-width: 769px) {
+    .cardPost{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: 300px;
+        width: 25%;
+        gap: 15px; 
+        border: 1px solid rgb(221, 221, 221);
+        padding: 25px;
+    }
+    
+    .body_post>span{
+        text-align: start;
+    }
+    
+    .cardPost>:first-child{
+        gap: 15px;
+    }
+    
+    .cardPost>:last-child{
+        min-width: 150px;
+    }
+    
+    .cardPost>*{
+        display: flex;
+        align-items: center;
+    }
 }
 
-.body_post>span{
-    text-align: start;
+@media (max-width: 576px) {
+    .cardPost{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: 250px;
+        width: 100%;
+        gap: 15px; 
+        border: 1px solid rgb(221, 221, 221);
+        padding: 25px;
+    }
+    
+    .body_post>span{
+        text-align: start;
+    }
+    
+    .cardPost>:first-child{
+        gap: 15px;
+    }
+    
+    .cardPost>:last-child{
+        min-width: 150px;
+    }
+    
+    .cardPost>*{
+        display: flex;
+        align-items: center;
+    }
 }
-
-.cardPost>:first-child{
-    gap: 15px;
-}
-
-.cardPost>:last-child{
-    min-width: 150px;
-}
-
-.cardPost>*{
-    display: flex;
-    align-items: center;
-}
-

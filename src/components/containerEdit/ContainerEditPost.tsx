@@ -1,64 +1,65 @@
-import { useEffect, useState } from "react"
-import { User } from "../../validations/user"
-import { recoverPost, recoverUsers } from "../../config/utils"
-import CardPost from "../cardPosts/CardPost"
-import './containerListPostStyles.css'
+import './containerEditPostStyles.css'
 import { ButtonPrimary } from "../button/Button"
+import Form from "../form/Form"
+import Input from "../input/Input"
+import {  createPost, recoverLogin, recoverPost } from '../../config/utils'
+import { Post, post } from '../../validations/post'
 
-import { Post } from "../../validations/post"
-
-interface ContainerListPostProps {
-    goCreatePost : (content: string) => void
+interface ContainerEditPostProps {
+   postToEdit: Post
 }
 
-export default function ContanierEditPost({goCreatePost} : ContainerListPostProps) {
-    const usersStorage = recoverUsers()
-    const postStorage = recoverPost()
+export default function ContanierEditPost({ postToEdit }: ContainerEditPostProps) {
 
-    const [users, setUsers] = useState<User[]>(usersStorage)
-    const [posts, setPosts] = useState<Post[]>(postStorage)
-    const [postsOfUser, setPostOfUser] = useState<string | number>('todos')
-    const [filterPosts, setFilterPost] = useState<Post[]>([])
+   const hanlerEditPost = (data: any) => {
+      const posts = recoverPost()
+      const user = recoverLogin()
 
-    useEffect(() => {
-        if (postsOfUser == "todos") {
-            setFilterPost(posts)
-            return
-        }
+      const findPost = posts.find(post => post.id == postToEdit.id) 
 
-        const filter = posts.filter(post => post.userId == postsOfUser)
+      try {
+         const datapost = post.parse(data)
 
-        setFilterPost(filter)
-    }, [postsOfUser])
+         const chageValues = {
+            ...findPost,
+            title: datapost.title,
+            body: datapost.body
+         }
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setPostOfUser(parseInt(e.target.value));
-        console.log(e.target.value)
-    };
+         //createPost(datapost)
 
-    return (
-        <div className="cardContainerPost">
-            <div className="actions">
-                <div>
-                    <select onChange={handleChange}>
-                        <option value="todos">Todos</option>
-                        {users.filter(user => user.role == 'admin').map(user => (
-                            <option value={user.id}>{user.name}</option>
-                        ))}
-                    </select>
-                </div>
+      } catch (error) {
+         console.error(error)
+      }
+   }
 
-                <div>
-                    <ButtonPrimary title="Crear post" handlerClick={ () => goCreatePost("createPost")}/>
-                </div>
+   return (
+      <div className="container_create">
+         <div className="actions_container_create">
+            <div>
+               <h2>Edita este post</h2>
             </div>
 
-            <div className="list_post">
-                {filterPosts.map(post => (
-                    <CardPost user={users.find(user => user.id == post.userId)} post={post} />
-                ))}
+            <div>
             </div>
-        </div>
-    )
+         </div>
+
+         <div className="form_create">
+
+            <Form
+               handleSubmit={hanlerEditPost}
+               render={({ handleChange }) => {
+                  return (
+                     <>
+                        <Input value={postToEdit.title} type="text" field="Titulo" name="title" handleChange={handleChange} />
+                        <Input value={postToEdit.body} type="text" field="Contraseña" name="body" handleChange={handleChange} />
+                        <ButtonPrimary isSubmit title={`Guardar post`} />
+                     </>
+                  )
+               }}
+            />
+         </div>
+      </div>
+   )
 
 }

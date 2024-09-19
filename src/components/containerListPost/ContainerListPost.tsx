@@ -4,6 +4,8 @@ import { recoverPost, recoverUsers } from "../../config/utils"
 import CardPost from "../cardPosts/CardPost"
 import './containerListPostStyles.css'
 import { ButtonPrimary } from "../button/Button"
+import { useContext } from "react"
+import { routesContentContext } from "../../context/routesContentContext"
 
 import { Post } from "../../validations/post"
 
@@ -19,6 +21,8 @@ export default function ContanierListPosts({goCreatePost} : ContainerListPostPro
     const [posts, setPosts] = useState<Post[]>(postStorage)
     const [postsOfUser, setPostOfUser] = useState<string | number>('todos')
     const [filterPosts, setFilterPost] = useState<Post[]>([])
+
+    //const {chageContent} = useContext(routesContentContext)
 
     useEffect(() => {
         if (postsOfUser == "todos") {
@@ -49,7 +53,7 @@ export default function ContanierListPosts({goCreatePost} : ContainerListPostPro
                 </div>
 
                 <div>
-                    <ButtonPrimary title="Crear post" handlerClick={ () => goCreatePost("createPost")}/>
+                    <ButtonPrimary title="Crear post" handlerClick={() => goCreatePost("createPost")}/>
                 </div>
             </div>
 

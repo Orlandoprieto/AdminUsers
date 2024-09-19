@@ -5,10 +5,11 @@ interface InputProps {
    type?: 'text' | 'submit' | 'email' | 'textarea' | 'password'
    name: string
    field?: string
+   value?: string
    handleChange: (name: string, value: string) => void
 }
 
-export default function Input({ field, type, name, handleChange }: InputProps) {
+export default function Input({ field, type, value, name, handleChange }: InputProps) {
    const id = useId()
 
    return (
@@ -16,6 +17,7 @@ export default function Input({ field, type, name, handleChange }: InputProps) {
          <label htmlFor={id}>{ field }</label>
 
          <input
+            value={value}
             className="input"
             onChange={(e) => handleChange(name, e.target.value)}
             id={id}

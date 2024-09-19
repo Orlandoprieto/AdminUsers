@@ -78,10 +78,9 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
                      handleSubmit={hanlerCreateUPost}
                      render={({ handleChange }) => {
                         return (
-
                            <>
                               <Input type="text" field="Titulo" name="title" handleChange={handleChange} />
-                              <Input type="text" field="Contraseña" name="body" handleChange={handleChange} />
+                              <Input type="text" field="Contenido" name="body" handleChange={handleChange} />
                               <ButtonPrimary isSubmit title={`Guardar ${create}`} />
                            </>
                         )
