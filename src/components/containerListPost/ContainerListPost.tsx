@@ -4,8 +4,6 @@ import { recoverPost, recoverUsers } from "../../config/utils"
 import CardPost from "../cardPosts/CardPost"
 import './containerListPostStyles.css'
 import { ButtonPrimary } from "../button/Button"
-import { useContext } from "react"
-import { routesContentContext } from "../../context/routesContentContext"
 
 import { Post } from "../../validations/post"
 

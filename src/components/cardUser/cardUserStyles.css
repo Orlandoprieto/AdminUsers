@@ -1,11 +1,15 @@
-@media (min-width: 769px) {
+@media (min-width: 801px) {
     .cardUser{
         display: flex;
         background-color: white;
         width: 100%;
         height: 80px;
-        padding: 0 50px;
+        padding: 0 40px;
         gap: 10px; 
+    }
+
+    .name_user>span{
+        text-align: start;
     }
     
     .avatar_user{
@@ -18,11 +22,7 @@
         width: 5%;
     }
     
-    .cardUser>:last-child{
-        display: flex;
-        justify-content: flex-end;
-        width: 5%;
-    }
+
     
     .cardUser>*{
         overflow-x: hidden;
@@ -33,13 +33,13 @@
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 800px) {
     .cardUser{
         display: flex;
         background-color: white;
         width: 100%;
         height: 80px;
-        padding: 0 50px;
+        padding: 0 30px;
         gap: 10px; 
     }
     
@@ -47,23 +47,37 @@
         width: 40px;
     }
     
+
+    .name_user>span{
+        text-align: start;
+    }
+
     .cardUser>:first-child{
         display: flex;
         align-items: center;
         width: 5%;
     }
     
-    .cardUser>:last-child{
-        display: flex;
-        justify-content: flex-end;
-        width: 5%;
-    }
-    
-    .cardUser>*{
+    .cardUser>* {
         overflow-x: hidden;
         gap: 10px;
         display: flex;
         align-items: center;
-        width: calc(100% / 4);
+        width: calc(100% / 2);
+    }
+
+    .userName_user{
+        display: none;
+    }
+
+    .email_user {
+        display: none;
+        
+    }
+
+    .type_User{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
 }

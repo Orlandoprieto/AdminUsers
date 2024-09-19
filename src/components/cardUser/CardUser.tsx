@@ -5,7 +5,7 @@ import {  ButtonPrimary, ButtonSecondary } from "../button/Button"
 // @ts-ignore
 import iconEdit from '../../assets/icon_edit.png'
 // @ts-ignore
-import iconuser from '../../assets/icon_users.png'
+import iconuser from '../../assets/iconUser.png'
 // @ts-ignore
 import iconAdmin from '../../assets/iconAdmin.png'
 
@@ -30,13 +30,15 @@ export default function CardUser({ user, index }: CardProps) {
                 <span>{user.username}</span>
             </div>
 
+            <div className="type_User">
+                <span>{user.role == 'admin' ? "Administrador" : "Usuario"}</span>
+            </div>
+
             <div className="email_user">
                 <span>{user.email}</span>
             </div>
 
-            <div className="type_User">
-                <span>{user.role}</span>
-            </div>
+            
         </div>
     )
 }

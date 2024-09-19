@@ -1,5 +1,5 @@
 
-@media (min-width: 769px) {
+@media (min-width: 1201px) {
     .cardPost{
         display: flex;
         flex-direction: column;
@@ -8,11 +8,14 @@
         width: 25%;
         gap: 15px; 
         border: 1px solid rgb(221, 221, 221);
-        padding: 25px;
+        padding: 20px;
     }
     
     .body_post>span{
+        overflow-y: hidden;
         text-align: start;
+        color: rgb(148, 148, 148);
+        max-height: 150px;
     }
     
     .cardPost>:first-child{
@@ -29,12 +32,12 @@
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1200px) {
     .cardPost{
         display: flex;
         flex-direction: column;
         background-color: white;
-        height: 250px;
+        min-width: 300px;
         width: 100%;
         gap: 15px; 
         border: 1px solid rgb(221, 221, 221);
