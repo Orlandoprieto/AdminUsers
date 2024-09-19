@@ -2,6 +2,7 @@
 
 @media (min-width: 801px){
     .containerCardUser{
+
         display: flex;
         flex-direction: column;
         height: 100%; 
@@ -38,16 +39,17 @@
 }
 
 @media (max-width: 800px){
-    .containerCardUser{
-        display: flex;
-        flex-direction: column;
-        height: 100%; 
+    .actions{ 
+        background-color: white;
+        padding: 20px 10px;
+        left: 0;
+        top: 0;
+        z-index: 1;
         width: 100%;
-    }
-    
-    .actions{
+        position: absolute;
         display: flex;
         justify-content: space-between;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .actions>*{
@@ -63,9 +65,10 @@
     }
     
     .list_users{
-        padding: 20px 0;
+        margin-top: 55px;
         display: flex;
         height: 100%;
+        padding: 15px 0;
         width: 100%;
         flex-direction: column;
         gap: 10px;

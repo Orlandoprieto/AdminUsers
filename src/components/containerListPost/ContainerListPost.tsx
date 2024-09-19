@@ -39,7 +39,7 @@ export default function ContanierListPosts({goCreatePost} : ContainerListPostPro
     };
 
     return (
-        <div className="cardContainerPost">
+        <div className="containerCardPost">
             <div className="actions">
                 <div>
                     <select onChange={handleChange}>

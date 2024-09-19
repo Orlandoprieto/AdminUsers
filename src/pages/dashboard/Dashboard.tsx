@@ -33,7 +33,7 @@ export default function DashboardAdmin() {
    //const { content } = useContext(routesContentContext)
    const [showMenu, setShowMenu] = useState<"flex" | "none">("flex")
 
-   
+
    useEffect(() => {
       fetchPost()
          .then(posts => {
@@ -60,15 +60,15 @@ export default function DashboardAdmin() {
          // case "editPost":
          //    return <ContanierEditPost />
          case 'createUser':
-            return <ContanierCreate create="user"/>
+            return <ContanierCreate create="user" />
          case 'createPost':
-            return <ContanierCreate create="post"/>
+            return <ContanierCreate create="post" />
          case 'posts':
-            return <ContanierListPosts goCreatePost={() => handlerContent('createPost')}/>
+            return <ContanierListPosts goCreatePost={() => handlerContent('createPost')} />
          case 'users':
-            return <ContanierListUsers goCreatePost={() => handlerContent('createUser')}/>;
+            return <ContanierListUsers goCreatePost={() => handlerContent('createUser')} />;
          default:
-            return <ContanierListPosts goCreatePost={() => handlerContent('createPost')}/>
+            return <ContanierListPosts goCreatePost={() => handlerContent('createPost')} />
       }
    };
 
@@ -86,38 +86,38 @@ export default function DashboardAdmin() {
    ]
 
    return (
-         <div className="dashboarAdmin">
-            <button onClick={() => setShowMenu(prev => prev == 'flex' ? 'none' : 'flex')} className="btn_menu_movile">
-               <img src={iconmenu} alt="" />
-            </button>
+      <div className="dashboarAdmin">
+         <button onClick={() => setShowMenu(prev => prev == 'flex' ? 'none' : 'flex')} className="btn_menu_movile">
+            <img src={iconmenu} alt="" />
+         </button>
 
-            <header className="containerHeader" style={{display: showMenu}}>
-               <div className="dataUser">
-                  <div className='container_img'>
-                     <img src={iconAdmin} alt="" />
-                  </div>
-                  <div className='info_user'>
-                     <strong>Hola, {userLogged?.name}</strong>
-                     <span>{userLogged?.email}</span>
-                  </div>
+         <header className="containerHeader" style={{ display: showMenu }}>
+            <div className="dataUser">
+               <div className='container_img'>
+                  <img src={iconAdmin} alt="" />
                </div>
-
-               <div className="dataControls">
-                  {buttons.map(button => (
-                     <ButtonSecondary {...button} />
-                  ))}
+               <div className='info_user'>
+                  <strong>Hola, {userLogged?.name}</strong>
+                  <span>{userLogged?.email}</span>
                </div>
-
-               <div className="configControls">
-                  <ButtonSecondary title="Terminar sesion" icon={iconExit} />
-               </div>
-
-            </header>
-
-            <div className="visualized_data">
-               {renderContent(route)}
             </div>
+
+            <div className="dataControls">
+               {buttons.map(button => (
+                  <ButtonSecondary {...button} />
+               ))}
+            </div>
+
+            <div className="configControls">
+               <ButtonSecondary title="Terminar sesion" icon={iconExit} />
+            </div>
+
+         </header>
+
+         <div className="visualized_data">
+            {renderContent(route)}
          </div>
+      </div>
    )
 }
 
