@@ -1,48 +1,64 @@
 import { useEffect, useState } from "react"
-import { user, User } from "../../validations/user"
-import { recoverUsers } from "../../config/utils"
+import { User } from "../../validations/user"
+import { recoverPost, recoverUsers } from "../../config/utils"
+import CardPost from "../cardPosts/CardPost"
+import './containerListPostStyles.css'
+import { ButtonPrimary } from "../button/Button"
 
-export default function ContanierListPosts() {
-    const [users, setUsers] = useState<User[]>([])
-    const [id, setId] = useState<number | String>('todos')
-    const [filterUsers, setFilterUsers] = useState<User[]>([])
+import { Post } from "../../validations/post"
+
+interface ContainerListPostProps {
+    goCreatePost : (content: string) => void
+}
+
+export default function ContanierListPosts({goCreatePost} : ContainerListPostProps) {
+    const usersStorage = recoverUsers()
+    const postStorage = recoverPost()
+
+    const [users, setUsers] = useState<User[]>(usersStorage)
+    const [posts, setPosts] = useState<Post[]>(postStorage)
+    const [postsOfUser, setPostOfUser] = useState<string | number>('todos')
+    const [filterPosts, setFilterPost] = useState<Post[]>([])
 
     useEffect(() => {
-        const users = recoverUsers()
-        setUsers(users)
-    })
-
-    useEffect(() => {
-        if (id == "todos") {
-            setFilterUsers(users)
+        if (postsOfUser == "todos") {
+            setFilterPost(posts)
             return
         }
 
-        const filter = users.filter(user => user.id == id)
+        const filter = posts.filter(post => post.userId == postsOfUser)
 
-        setFilterUsers(filter)
-    }, [id])
+        setFilterPost(filter)
+    }, [postsOfUser])
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setId(parseInt(e.target.value));
+        setPostOfUser(parseInt(e.target.value));
+        console.log(e.target.value)
     };
 
     return (
-        <div className="cardContainerUser">
+        <div className="cardContainerPost">
             <div className="actions">
-                <select onChange={handleChange}>
-                    <option value="todos">Todos</option>
-                    {users.map(user => (
-                        <option value="admin">{user.name}</option>
-                    ))}
-                </select>
+                <div>
+                    <select onChange={handleChange}>
+                        <option value="todos">Todos</option>
+                        {users.filter(user => user.role == 'admin').map(user => (
+                            <option value={user.id}>{user.name}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <ButtonPrimary title="Crear post" handlerClick={ () => goCreatePost("createPost")}/>
+                </div>
             </div>
 
-            <div className="">
-                {filterUsers.map(user => (
-                    <p>{user.name}</p>
+            <div className="list_post">
+                {filterPosts.map(post => (
+                    <CardPost user={users.find(user => user.id == post.id)} post={post} />
                 ))}
             </div>
         </div>
     )
+
 }

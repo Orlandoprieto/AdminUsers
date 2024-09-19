@@ -5,17 +5,19 @@ import CardUser from "../cardUser/CardUser"
 import './containerListUserStyles.css'
 import { ButtonPrimary } from "../button/Button"
 
+interface ContainerListPostProps {
+   goCreatePost : (content: string) => void
+}
 
+export default function ContanierListUsers( {goCreatePost} : ContainerListPostProps ) {
 
-export default function ContanierListUsers() {
-   const [users, setUsers] = useState<User[]>([])
-   const [typeuser, setTypeUser] = useState<String>('todos')
+   const usersStorage = recoverUsers()
+
+   const [users, setUsers] = useState<User[]>(usersStorage)
+   const [typeuser, setTypeUser] = useState<string>('todos')
    const [filterUsers, setFilterUsers] = useState<User[]>([])
 
-   useEffect(() => {
-      const users = recoverUsers()
-      setUsers(users)
-   }, [])
+   
 
    useEffect(() => {
       if (typeuser == "todos") {
@@ -36,7 +38,7 @@ export default function ContanierListUsers() {
       <div className="containerCardUser">
          <div className="actions">
             <div>
-               <select onChange={handleChange}>
+               <select value={typeuser} onChange={handleChange}>
                   <option value="todos">Todos</option>
                   <option value="admin">Admistrador</option>
                   <option value="user">User</option>
@@ -44,14 +46,16 @@ export default function ContanierListUsers() {
             </div>
 
             <div>
-               <ButtonPrimary title="Crear usuario"/>
+               <ButtonPrimary title="Crear usuario" handlerClick={ () => goCreatePost("createUser")}/>
             </div>
          </div>
 
          <div className="list_users">
-            {filterUsers.map((user, index) => (
-               <CardUser user={user} index={index} />
-            ))}
+            {
+               filterUsers.length > 0 
+                  ? filterUsers.map((user, index) => <CardUser user={user} index={index} />)
+                  : <span>No se encontraron resultados</span>
+            }
          </div>
 
       </div>

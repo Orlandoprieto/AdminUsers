@@ -1,4 +1,4 @@
-import * as z from 'zod'
+import z from 'zod'
 
 export const post = z.object({
     userId: z.number(),
@@ -15,5 +15,5 @@ export const createPost = post.pick({
     body: z.string().min(20, { message: "El contenido es muy corto" }),
 })
 
-
+export type Post = z.infer<typeof post>
 

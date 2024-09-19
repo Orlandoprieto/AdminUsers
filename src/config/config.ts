@@ -3,13 +3,16 @@ import {
     FIELD_USERS_IN_STORAGE 
 } from './const'
 import fetchUsers from '../services/fetchUsers'
+import { recoverUsers } from './utils'
 //import fetchPost from '../services/fetchPosts'
 
 export function configInit() {
     createStores()
 
     fetchUsers()
-        .then(users => saveFetchInStorage(FIELD_USERS_IN_STORAGE, users))
+        .then(users => {
+            saveFetchInStorage(FIELD_USERS_IN_STORAGE, users)
+        })
 
     // fetchPost()
     //     .then(posts => saveFetchInStorage(FIELD_POSTS_IN_STORAGE, posts))
@@ -29,6 +32,10 @@ function createStores()  {
 }
 
 function saveFetchInStorage(field: string, data: any) {
+    const users = recoverUsers()
+
+    if(users.length > 0) return
+
     const dataString = JSON.stringify(data)
 
     localStorage.setItem(field, dataString)

@@ -7,5 +7,9 @@
 
 body {
     background-color: #F8F9FD;
+    max-height: 100vh;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 

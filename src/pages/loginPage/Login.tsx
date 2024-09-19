@@ -12,10 +12,9 @@ import { FIELD_USERS_IN_STORAGE, FIELD_USER_SESION } from '../../config/const';
 // @ts-ignore
 import icon from '../../assets/iconUsers.png'
 
-export function Login() {
+export default function Login() {
    const navigate = useNavigate()
 
-   const { initSession } = useContext(userLoggedContext)
    const [messageError, serMessageError] = useState<string | null>(null)
 
    type User = z.infer<typeof user>

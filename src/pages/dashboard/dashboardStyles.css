@@ -5,7 +5,7 @@
 }
 
 .containerHeader {
-    width: 300px;
+    width: 20%;
     height: 100%;
     background-color: white;
     display: flex;
@@ -56,8 +56,8 @@
 }
 
 .visualized_data{
+    overflow-y: scroll;
     padding: 30px;
     display: flex;
-    flex-direction: column;
-    flex: 1;
+    width: 100%;
 }

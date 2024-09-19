@@ -20,6 +20,7 @@ export default function Form({ render, handleSubmit }: FormProps) {
    const onSubmit = (e: React.FormEvent) => {
       e.preventDefault()
       handleSubmit(data)
+      console.log(data)
    }
 
    return (

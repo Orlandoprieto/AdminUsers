@@ -1,0 +1,17 @@
+.cardPost{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 300px;
+    width: 25%;
+    gap: 10px; 
+    border: 1px solid rgb(221, 221, 221);
+    padding: 15px;
+    justify-content: space-between;
+}
+
+
+.cardPost>*{
+    display: flex;
+    align-items: center;
+}

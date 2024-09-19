@@ -8,11 +8,10 @@
 
 input {
     height: 40px;
-    border: 3px solid #5A9EF1;
+    border: 2px solid #5A9EF1;
     font-size: 16px;
     padding: 20px 15px;
 }
-
 
 
 input[type= "password"]{
