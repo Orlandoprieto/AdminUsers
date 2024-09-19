@@ -12,9 +12,8 @@
 }
 
 .actions>*{
-    
     display: flex;
-    width: 12%;
+    min-width: 150px;
 }
 
 .actions>:last-child{

@@ -1,9 +1,9 @@
 import { User } from "../../validations/user"
 import './cardUserStyles.css'
-import {  ButtonSecondary } from "../button/Button"
+import {  ButtonPrimary, ButtonSecondary } from "../button/Button"
 
 // @ts-ignore
-import iconDelete from '../../assets/icon_delete.png'
+import iconEdit from '../../assets/icon_edit.png'
 // @ts-ignore
 import iconuser from '../../assets/icon_users.png'
 // @ts-ignore
@@ -36,10 +36,6 @@ export default function CardUser({ user, index }: CardProps) {
 
             <div className="type_User">
                 <span>{user.role}</span>
-            </div>
-
-            <div className="type_User">
-                <ButtonSecondary icon={iconDelete}/>
             </div>
         </div>
     )

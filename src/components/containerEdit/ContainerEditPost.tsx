@@ -11,7 +11,7 @@ interface ContainerListPostProps {
     goCreatePost : (content: string) => void
 }
 
-export default function ContanierListPosts({goCreatePost} : ContainerListPostProps) {
+export default function ContanierEditPost({goCreatePost} : ContainerListPostProps) {
     const usersStorage = recoverUsers()
     const postStorage = recoverPost()
 
