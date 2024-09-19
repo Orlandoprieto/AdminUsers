@@ -48,7 +48,7 @@ export default function Login() {
 
    return (
       <div className="container">
-         <div className="card">
+         <div className="card_login">
             <div className="container_info">
                <img src={icon} alt="" />
 

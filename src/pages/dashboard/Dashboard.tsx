@@ -24,7 +24,6 @@ import iconExit from '../../assets/exit.png'
 import { User } from "../../validations/user"
 import ContanierCreate from "../../components/containerCreate/ContainerCreate"
 import ContanierEditPost from "../../components/containerEdit/ContainerEditPost"
-import RoutesContentContext, { routesContentContext } from "../../context/routesContentContext"
 import { Post } from "../../validations/post"
 
 export default function DashboardAdmin() {
@@ -32,7 +31,7 @@ export default function DashboardAdmin() {
    const navigate = useNavigate()
    const [userLogged, setUserLogged] = useState<User | null>(null)
    //const { content } = useContext(routesContentContext)
-   const [showMenu, setShowMenu] = useState<"flex" | "none">()
+   const [showMenu, setShowMenu] = useState<"flex" | "none">("flex")
 
    
    useEffect(() => {
