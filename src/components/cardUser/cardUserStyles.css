@@ -1,32 +1,69 @@
-.cardUser{
-    display: flex;
-    background-color: white;
-    width: 100%;
-    height: 80px;
-    padding: 0 50px;
-    gap: 10px; 
+@media (min-width: 769px) {
+    .cardUser{
+        display: flex;
+        background-color: white;
+        width: 100%;
+        height: 80px;
+        padding: 0 50px;
+        gap: 10px; 
+    }
+    
+    .avatar_user{
+        width: 40px;
+    }
+    
+    .cardUser>:first-child{
+        display: flex;
+        align-items: center;
+        width: 5%;
+    }
+    
+    .cardUser>:last-child{
+        display: flex;
+        justify-content: flex-end;
+        width: 5%;
+    }
+    
+    .cardUser>*{
+        overflow-x: hidden;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        width: calc(100% / 4);
+    }
 }
 
-.avatar_user{
-    width: 40px;
-}
-
-.cardUser>:first-child{
-    display: flex;
-    align-items: center;
-    width: 5%;
-}
-
-.cardUser>:last-child{
-    display: flex;
-    justify-content: flex-end;
-    width: 5%;
-}
-
-.cardUser>*{
-    overflow-x: hidden;
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    width: calc(100% / 4);
+@media (max-width: 576px) {
+    .cardUser{
+        display: flex;
+        background-color: white;
+        width: 100%;
+        height: 80px;
+        padding: 0 50px;
+        gap: 10px; 
+    }
+    
+    .avatar_user{
+        width: 40px;
+    }
+    
+    .cardUser>:first-child{
+        display: flex;
+        align-items: center;
+        width: 5%;
+    }
+    
+    .cardUser>:last-child{
+        display: flex;
+        justify-content: flex-end;
+        width: 5%;
+    }
+    
+    .cardUser>*{
+        overflow-x: hidden;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        width: calc(100% / 4);
+    }
 }
