@@ -20,3 +20,5 @@ Este es un proyecto para la gestión de usuarios con roles administrativos.
     | ---------------   | ----------- |
     | Sincere@april.biz | 123456      |
 
+
+   por defecto no hay usuarios de tipo "user", se debera crear uno desde una cuenta de administrador
