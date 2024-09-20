@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { User } from "../../validations/user"
 import { recoverLogin, recoverPost, recoverUsers } from "../../config/utils"
 import CardPost from "../cardPosts/CardPost"
-import './containerListPostStyles.css'
+import './containerListUserStyles.css'
 import { ButtonPrimary } from "../button/Button"
 
 import { Post } from "../../validations/post"
@@ -40,7 +40,7 @@ export default function ContanierListPosts({handlerClick, titleButton} : Contain
     };
 
     return (
-        <div className="containerCardPost">
+        <div className="containerCardUser">
             <div className="actions">
                 <div>
                     <select onChange={handleChange}>
