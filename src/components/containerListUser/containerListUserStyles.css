@@ -5,7 +5,6 @@
         padding: 0 50px;
         display: flex;
         flex-direction: column;
-        height: 100%; 
         width: 100%;
     }
     
@@ -28,12 +27,11 @@
     }
     
     .list_users{
-        padding: 20px 0;
-        display: flex;
         height: calc(100vh - 100px);
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
+        overflow-y: scroll;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        display: flex;
     }
 }
 
