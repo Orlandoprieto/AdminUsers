@@ -7,8 +7,7 @@
 
 body {
     background-color: #F8F9FD;
-    max-height: 100vh;
-    height: 100%;
+    height: auto;
     width: 100%;
     overflow: hidden;
     position: relative;

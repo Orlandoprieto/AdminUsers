@@ -39,6 +39,7 @@ export default function Login() {
 
          localStorage.setItem(FIELD_USER_SESION, JSON.stringify(findUser))
 
+
          navigate('/dashboard')
 
       } catch (error) {

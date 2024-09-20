@@ -26,13 +26,10 @@ import ContanierCreate from "../../components/containerCreate/ContainerCreate"
 import ContanierEditPost from "../../components/containerEdit/ContainerEditPost"
 import { Post } from "../../validations/post"
 
-export default function DashboardAdmin() {
-   const [route, setRoute] = useState<string>("posts")
+export default function Dashboard() {
+   const userLogged = recoverLogin()
+   const [user, setUser] = useState<User | null>(userLogged)
    const navigate = useNavigate()
-   const [userLogged, setUserLogged] = useState<User | null>(null)
-   //const { content } = useContext(routesContentContext)
-   const [showMenu, setShowMenu] = useState<"flex" | "none">("flex")
-
 
    useEffect(() => {
       fetchPost()
@@ -40,16 +37,27 @@ export default function DashboardAdmin() {
             localStorage.setItem(FIELD_POSTS_IN_STORAGE, JSON.stringify(posts))
          })
 
-      const user = recoverLogin()
-
-      if (!user) {
+      if (!userLogged) {
          navigate('/error');
          return
       }
 
-      setUserLogged(user)
+      setUser(user)
    }, []);
 
+   return (
+      user?.role == 'admin'
+         ? <DashboarAdmin user={user} />
+         : <DashboarUser />
+   )
+}
+
+
+function DashboarAdmin({ user }: { user: User }) {
+   const [route, setRoute] = useState<string>("posts")
+
+   //const { content } = useContext(routesContentContext)
+   const [showMenu, setShowMenu] = useState<"flex" | "none">("flex")
 
    const handlerContent = (content: string) => {
       setRoute(content)
@@ -97,8 +105,8 @@ export default function DashboardAdmin() {
                   <img src={iconAdmin} alt="" />
                </div>
                <div className='info_user'>
-                  <strong>Hola, {userLogged?.name}</strong>
-                  <span>{userLogged?.email}</span>
+                  <strong>Hola, {user.name}</strong>
+                  <span>{user.email}</span>
                </div>
             </div>
 
@@ -121,3 +129,8 @@ export default function DashboardAdmin() {
    )
 }
 
+function DashboarUser() {
+   return (
+      <ContanierListPosts />
+   )
+}

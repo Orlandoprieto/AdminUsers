@@ -2,7 +2,7 @@
 
 @media (min-width: 801px){
     .containerCardUser{
-
+        padding: 0 50px;
         display: flex;
         flex-direction: column;
         height: 100%; 

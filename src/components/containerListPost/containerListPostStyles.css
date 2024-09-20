@@ -1,15 +1,19 @@
 
-
 @media (min-width: 801px){
     .containerCardPost{
+        position: relative;
         display: flex;
         flex-direction: column;
         height: 100%; 
         width: 100%;
-    
+        padding: 0 50px;
     }
     
     .actions{
+        right: 0;
+        top: 0;
+        width: calc(100%);
+        padding: 20px 0;
         display: flex;
         justify-content: space-between;
     }
@@ -25,8 +29,8 @@
     }
     
     .list_post{
+        margin-top: 30px;
         flex-wrap: wrap;
-        padding: 15px 0;
         display: flex;
     }
 }
