@@ -6,6 +6,8 @@ import { createUser, createPost, recoverUsers, recoverLogin, recoverPost } from 
 import { user } from '../../validations/user'
 import { post } from '../../validations/post'
 import { PASSWORD_DEFAULT } from '../../config/const'
+import { useState } from 'react'
+import { ZodError } from 'zod'
 
 
 interface ContainerListPostProps {
@@ -13,8 +15,13 @@ interface ContainerListPostProps {
 }
 
 export default function ContanierCreate({ create }: ContainerListPostProps) {
+   const [messageError, serMessageError] = useState<string>('')
+   const [messageCompleted, serMessageCompleted] = useState<string>('')
 
    const hanlerCreateUser = (data: any) => {
+      serMessageCompleted("")
+      serMessageError("")
+
       const users = recoverUsers()
 
       const addFieldsToData = {
@@ -35,12 +42,26 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
 
          createUser(dataUser)
 
-      } catch (error) {
-         console.error(error)
+         serMessageCompleted("Usuario creado con exito")
+
+      } catch (err) {
+         if(err instanceof ZodError) {
+            const errorZod = err as ZodError
+            console.log(errorZod)
+
+            serMessageError(errorZod.errors[0].message)
+            return
+         }
+
+         const error = err as Error
+         serMessageError(error.message)
       }
    }
 
    const hanlerCreateUPost = (data: any) => {
+      serMessageCompleted("")
+      serMessageError("")
+
       const posts = recoverPost()
       const user = recoverLogin()
 
@@ -55,8 +76,19 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
 
          createPost(datapost)
 
-      } catch (error) {
-         console.error(error)
+         serMessageCompleted("Post creado con exito")
+
+      } catch (err) {
+         if(err instanceof ZodError) {
+            const errorZod = err as ZodError
+            console.log(errorZod)
+
+            serMessageError(errorZod.errors[0].message)
+            return
+         }
+
+         const error = err as Error
+         serMessageError(error.message)
       }
    }
 
@@ -95,8 +127,8 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
                               <Input type="text" field="Nombre" name="name" handleChange={handleChange} />
                               <Input type="text" field="Nombre de Usuario" name="username" handleChange={handleChange} />
                               <Input type="email" field="Correo electronico" name="email" handleChange={handleChange} />
-                              <select onChange={(e) => handleChange("role", e.target.value)}>
-                                 <option value="admin">Administrador</option>
+                              <select defaultValue='user' onChange={(e) => handleChange("role", e.target.value)}>
+                                 <option  value="admin">Administrador</option>
                                  <option value="user">Usuario</option>
                               </select>
                               <ButtonPrimary isSubmit title={`Guardar ${create}`} />
@@ -106,10 +138,17 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
                   />
                )
             }
-
-
-
          </div>
+
+         {
+            messageError.length > 0
+            && <span className='error_msg'>{messageError}</span>
+         }
+
+         {
+            messageCompleted.length > 0
+            && <span className='complete_msg'>{messageCompleted}</span>
+         }
       </div>
    )
 

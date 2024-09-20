@@ -4,7 +4,7 @@ import Form from "../../components/form/Form"
 import Input from "../../components/input/Input";
 import './loginPageStyles.css';
 import {ButtonPrimary} from "../../components/button/Button";
-import z from 'zod';
+import z, { ZodError } from 'zod';
 import { loginUser, user } from '../../validations/user';
 import { useNavigate } from 'react-router-dom';
 import { FIELD_USERS_IN_STORAGE, FIELD_USER_SESION } from '../../config/const';
@@ -15,7 +15,7 @@ import icon from '../../assets/iconUsers.png'
 export default function Login() {
    const navigate = useNavigate()
 
-   const [messageError, serMessageError] = useState<string | null>(null)
+   const [messageError, serMessageError] = useState<string>('')
 
    type User = z.infer<typeof user>
 
@@ -42,8 +42,17 @@ export default function Login() {
 
          navigate('/dashboard')
 
-      } catch (error) {
-         console.error(error)
+      } catch (err) {
+         if(err instanceof ZodError) {
+            const errorZod = err as ZodError
+            console.log(errorZod)
+
+            serMessageError(errorZod.errors[0].message)
+            return
+         }
+
+         const error = err as Error
+         serMessageError(error.message)
       }
    }
 
@@ -69,6 +78,11 @@ export default function Login() {
                   )
                }}
             />
+
+            { 
+               messageError.length > 0 
+                  && <span className='error_msg'>{messageError}</span>
+            }
          </div>
       </div>
    )

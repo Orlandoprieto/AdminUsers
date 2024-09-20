@@ -2,10 +2,10 @@ import * as z from 'zod'
 
 export const user = z.object({
     id: z.number(),
-    name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres" }),
-    username: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres" }),
-    email: z.string().email({ message: "Correo electrónico invalido" }),
-    password: z.string(),
+    name: z.string().min(1, { message: "Completa el nombre" }).default(''),
+    username: z.string().min(2, { message: "Falta el nombre del usuario" }).default(''),
+    email: z.string().email({ message: "Correo electrónico nulo o invalido" }).default(''),
+    password: z.string().default(''),
     role: z.enum(['admin', 'user'], { message: "Debe seleccionar uno de los siguientes roles: admin, user" }).optional(),
 })
 
@@ -15,8 +15,8 @@ export const createUser = user.extend({
 
 
 export const loginUser = z.object({
-    email: z.string().min(1,{ message: "El correo es requerido." }),
-    password: z.string().min(1, { message: "La contraseña es requerida" }),
+    email: z.string().min(1,{ message: "El correo es requerido." }).default(''),
+    password: z.string().min(1, { message: "La contraseña es requerida" }).default(''),
 })
 
 
