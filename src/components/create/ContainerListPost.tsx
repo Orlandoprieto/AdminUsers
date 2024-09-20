@@ -57,6 +57,10 @@ export default function ContanierListPosts({handlerClick, titleButton} : Contain
             </div>
 
             <div className="list_post">
+                {
+                    filterPosts.length == 0 && <span className="not_results">No hay resultados</span>
+                }
+                        
                 {filterPosts.map(post => (
                     <CardPost user={users.find(user => user.id == post.userId)} post={post} />
                 ))}

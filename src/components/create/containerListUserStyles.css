@@ -36,7 +36,12 @@
         gap: 5px;
     }
 
-    
+    .not_results{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 800px){
@@ -73,6 +78,7 @@
         justify-content: flex-end;
     }
     
+    .list_post,
     .list_users{
         margin-top: 55px;
         display: flex;
@@ -81,5 +87,12 @@
         width: 100%;
         flex-direction: column;
         gap: 10px;
+    }
+
+    .not_results{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
