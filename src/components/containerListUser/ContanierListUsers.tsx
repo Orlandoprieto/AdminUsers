@@ -17,8 +17,6 @@ export default function ContanierListUsers( {goCreatePost} : ContainerListPostPr
    const [typeuser, setTypeUser] = useState<string>('todos')
    const [filterUsers, setFilterUsers] = useState<User[]>([])
 
-   
-
    useEffect(() => {
       if (typeuser == "todos") {
          setFilterUsers(users)
@@ -54,7 +52,7 @@ export default function ContanierListUsers( {goCreatePost} : ContainerListPostPr
             {
                filterUsers.length > 0 
                   ? filterUsers.map((user, index) => <CardUser user={user} index={index} />)
-                  : <span>No se encontraron resultados</span>
+                  : <span>No se encontraron Usuarios</span>
             }
          </div>
 
