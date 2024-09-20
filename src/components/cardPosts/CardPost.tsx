@@ -27,22 +27,25 @@ export default function CardPost({ post, user }: CardProps) {
 
     const savePost = (data: any) => {
 
+        
+
         const dataPost = data as z.infer<typeof createPost>
         
         const posts = recoverPost()
 
         try {
+
             const validatePost = createPost.parse(data)
 
-            posts.forEach(p => {
-                if(p.id != post.id) {
-                    return
-                }
-    
-                return {...p, ...validatePost}
-            })
+            const updatedPosts = posts.map(p => 
+                p.id === post.id ? { ...p, ...validatePost } : p
+            );
+            
 
-            localStorage.setItem(FIELD_POSTS_IN_STORAGE, JSON.stringify(posts))
+            console.log(data, "holaaaaa")
+            console.log(posts, "HOLAAAAAAAAAAAAAAAAA")
+
+            localStorage.setItem(FIELD_POSTS_IN_STORAGE, JSON.stringify(updatedPosts))
         } catch (error) {
             console.log(error)
         }
@@ -75,7 +78,7 @@ export default function CardPost({ post, user }: CardProps) {
                 </>
             )}
 
-            {editPost && (
+            {editPost && ( 
                 <Form
                     handleSubmit={savePost}
                     render={({ handleChange }) => {
