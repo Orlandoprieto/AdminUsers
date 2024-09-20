@@ -8,9 +8,19 @@
         width: 100%;
         gap: 15px; 
         border: 1px solid rgb(221, 221, 221);
-        padding: 20px;
+        padding: 15px 40px;
     }
-    
+
+    .cardPost>:first-child{
+        justify-content: space-between;
+    }
+
+    .user_post{
+        display: flex;
+        align-items: center; 
+        gap: 10px;
+    }
+
     .body_post>span{
         overflow-y: hidden;
         text-align: start;
@@ -22,10 +32,8 @@
         gap: 15px;
     }
     
-    .cardPost>:last-child{
-        min-width: 150px;
-    }
-    
+
+
     .cardPost>*{
         display: flex;
         align-items: center;
@@ -44,8 +52,19 @@
         padding: 25px;
     }
     
+    .cardPost>:first-child{
+        justify-content: space-between;
+    }
+
+    .user_post{
+        display: flex;
+        align-items: center; 
+        gap: 10px;
+    }
+
     .body_post>span{
         text-align: start;
+        color: rgb(148, 148, 148);
     }
     
     .cardPost>:first-child{
