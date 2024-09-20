@@ -7,9 +7,8 @@
 
 body {
     background-color: #F8F9FD;
-    height: auto;
     width: 100%;
-    overflow: hidden;
+    height: 100vh;
     position: relative;
 }
 

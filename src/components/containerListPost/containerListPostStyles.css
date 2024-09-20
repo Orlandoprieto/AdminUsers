@@ -12,8 +12,8 @@
     .actions{
         right: 0;
         top: 0;
-        width: calc(100%);
-        padding: 20px 0;
+        width: 100%;
+        padding: 10px 0;
         display: flex;
         justify-content: space-between;
     }
@@ -29,7 +29,9 @@
     }
     
     .list_post{
-        margin-top: 30px;
+        height: calc(100vh - 100px);
+        overflow-y: scroll;
+        margin-top: 20px;
         flex-wrap: wrap;
         display: flex;
     }
