@@ -8,6 +8,7 @@ import ContanierListPosts from "../../components/containerListPost/ContainerList
 import ContanierListUsers from "../../components/containerListUser/ContanierListUsers"
 import fetchPost from "../../services/fetchPosts"
 import { FIELD_POSTS_IN_STORAGE } from "../../config/const"
+import { closeSesionUser } from "../../config/utils"
 
 // @ts-ignore
 import iconmenu from '../../assets/icon_menu.png'
@@ -72,11 +73,11 @@ function DashboarAdmin({ user }: { user: User }) {
          case 'createPost':
             return <ContanierCreate create="post" />
          case 'posts':
-            return <ContanierListPosts goCreatePost={() => handlerContent('createPost')} />
+            return <ContanierListPosts handlerClick={() => handlerContent('createPost')} titleButton="Crear post" />
          case 'users':
             return <ContanierListUsers goCreatePost={() => handlerContent('createUser')} />;
          default:
-            return <ContanierListPosts goCreatePost={() => handlerContent('createPost')} />
+            return <ContanierListPosts handlerClick={() => handlerContent('createPost')} titleButton="Crear post"/>
       }
    };
 
@@ -130,7 +131,14 @@ function DashboarAdmin({ user }: { user: User }) {
 }
 
 function DashboarUser() {
+   const navigate = useNavigate()
+
+   const closeSeesion = () => {
+      closeSesionUser()
+      navigate('/')
+   }
+
    return (
-      <ContanierListPosts />
+      <ContanierListPosts titleButton="Cerrar session" handlerClick={closeSeesion}/>
    )
 }

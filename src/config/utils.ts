@@ -2,6 +2,7 @@ import { FIELD_USER_SESION, FIELD_USERS_IN_STORAGE, FIELD_POSTS_IN_STORAGE  } fr
 import { User } from "../validations/user";
 import { Post } from "../validations/post";
 
+
 export function recoverLogin(): User | null {
     const userJson = localStorage.getItem(FIELD_USER_SESION)
 

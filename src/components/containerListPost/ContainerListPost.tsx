@@ -8,10 +8,11 @@ import { ButtonPrimary } from "../button/Button"
 import { Post } from "../../validations/post"
 
 interface ContainerListPostProps {
-    goCreatePost : (content: string) => void
+    handlerClick : () => void,
+    titleButton: string
 }
 
-export default function ContanierListPosts({goCreatePost} : ContainerListPostProps) {
+export default function ContanierListPosts({handlerClick, titleButton} : ContainerListPostProps) {
     const usersStorage = recoverUsers()
     const postStorage = recoverPost()
 
@@ -51,7 +52,7 @@ export default function ContanierListPosts({goCreatePost} : ContainerListPostPro
                 </div>
 
                 <div>
-                    <ButtonPrimary title="Crear post" handlerClick={() => goCreatePost("createPost")}/>
+                    <ButtonPrimary title={titleButton} handlerClick={() => handlerClick()}/>
                 </div>
             </div>
 
