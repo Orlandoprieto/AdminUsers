@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from 'react'
 import { recoverLogin } from "../../config/utils"
 import './dashboardStyles.css'
-import { ButtonPrimary, ButtonSecondary } from "../../components/button/Button"
+import { ButtonSecondary } from "../../components/button/Button"
 import ContanierListPosts from "../../components/containerListPost/ContainerListPost"
 import ContanierListUsers from "../../components/containerListUser/ContanierListUsers"
 import fetchPost from "../../services/fetchPosts"
@@ -24,8 +24,7 @@ import iconExit from '../../assets/exit.png'
 //TYPES
 import { User } from "../../validations/user"
 import ContanierCreate from "../../components/containerCreate/ContainerCreate"
-import ContanierEditPost from "../../components/containerEdit/ContainerEditPost"
-import { Post } from "../../validations/post"
+
 
 export default function Dashboard() {
    const userLogged = recoverLogin()
@@ -59,6 +58,13 @@ function DashboarAdmin({ user }: { user: User }) {
 
    //const { content } = useContext(routesContentContext)
    const [showMenu, setShowMenu] = useState<"flex" | "none">("flex")
+
+   const navigate = useNavigate()
+
+   const closesession = () => {
+      closeSesionUser()
+      navigate('/')
+   }
 
    const handlerContent = (content: string) => {
       setRoute(content)
@@ -118,7 +124,7 @@ function DashboarAdmin({ user }: { user: User }) {
             </div>
 
             <div className="configControls">
-               <ButtonSecondary title="Terminar sesion" icon={iconExit} />
+               <ButtonSecondary title="Cerrar sesion" icon={iconExit} handlerClick={closesession} />
             </div>
 
          </header>
@@ -133,12 +139,12 @@ function DashboarAdmin({ user }: { user: User }) {
 function DashboarUser() {
    const navigate = useNavigate()
 
-   const closeSeesion = () => {
+   const closesession = () => {
       closeSesionUser()
       navigate('/')
    }
 
    return (
-      <ContanierListPosts titleButton="Cerrar session" handlerClick={closeSeesion}/>
+      <ContanierListPosts titleButton="Cerrar session" handlerClick={closesession}/>
    )
 }
