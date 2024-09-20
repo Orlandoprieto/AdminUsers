@@ -7,23 +7,25 @@ import iconAdmin from '../../assets/iconAdmin.png'
 import iconEdit from '../../assets/icon_edit.png'
 
 import { User } from "../../validations/user"
-import { ButtonSecondary } from "../button/Button"
+import { ButtonSecondary, ButtonPrimary } from "../button/Button"
 import { recoverLogin } from "../../config/utils"
+import Form from "../form/Form"
+import { useState } from "react"
+import Input from "../input/Input"
 
 interface CardProps {
     post: Post;
     user?: User
 }
 
+
+
 export default function CardPost({ post, user }: CardProps) {
     const sessionUser = recoverLogin()
-
-    const viewPost = () => {
-
-    }
+    const [editPost, setEditPost] = useState<boolean>(false)
 
     return (
-        <div className="cardPost" onClick={viewPost}>
+        <div className="cardPost">
             <div>
                 <div className="user_post">
                     <img className="avatar_user" src={iconAdmin} />
@@ -32,18 +34,37 @@ export default function CardPost({ post, user }: CardProps) {
 
                 {post.userId == sessionUser?.id && (
                     <div>
-                        <ButtonSecondary icon={iconEdit} />
+                        <ButtonSecondary icon={iconEdit} handlerClick={() => setEditPost(!editPost)}/>
                     </div>
                 )}
             </div>
 
-            <div className="title_post">
-                <strong>{post.title}</strong>
-            </div>
+            {!editPost && (
+                <>
+                    <div className="title_post">
+                        <strong>{post.title}</strong>
+                    </div>
 
-            <div className="body_post">
-                <span>{post.body}</span>
-            </div>
+                    <div className="body_post">
+                        <span>{post.body}</span>
+                    </div>
+                </>
+            )}
+
+            {editPost && (
+                <Form
+                    handleSubmit={() => console.log("editar post")}
+                    render={({ handleChange }) => {
+                        return (
+                            <>
+                                <Input type="text" field="Titulo" name="title" handleChange={handleChange} />
+                                <Input type="text" field="Contenido" name="body" handleChange={handleChange} />
+                                <ButtonPrimary isSubmit title="Guardar" />
+                            </>
+                        )
+                    }}
+                />
+            )}
         </div>
     )
 }
