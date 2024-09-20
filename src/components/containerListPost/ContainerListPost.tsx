@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { User } from "../../validations/user"
-import { recoverPost, recoverUsers } from "../../config/utils"
+import { recoverLogin, recoverPost, recoverUsers } from "../../config/utils"
 import CardPost from "../cardPosts/CardPost"
 import './containerListPostStyles.css'
 import { ButtonPrimary } from "../button/Button"
@@ -15,7 +15,7 @@ interface ContainerListPostProps {
 export default function ContanierListPosts({handlerClick, titleButton} : ContainerListPostProps) {
     const usersStorage = recoverUsers()
     const postStorage = recoverPost()
-
+    const session = recoverLogin()
     const [users, setUsers] = useState<User[]>(usersStorage)
     const [posts, setPosts] = useState<Post[]>(postStorage)
     const [postsOfUser, setPostOfUser] = useState<string | number>('todos')
@@ -46,7 +46,7 @@ export default function ContanierListPosts({handlerClick, titleButton} : Contain
                     <select onChange={handleChange}>
                         <option value="todos">Todos</option>
                         {users.filter(user => user.role == 'admin').map(user => (
-                            <option value={user.id}>{user.name}</option>
+                            <option value={user.id}>{user.id == session?.id ? "Mis posts" : user.name}</option>
                         ))}
                     </select>
                 </div>
