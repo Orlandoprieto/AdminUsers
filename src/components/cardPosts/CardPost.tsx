@@ -1,4 +1,5 @@
-import { Post } from "../../validations/post"
+import { Post, createPost } from "../../validations/post"
+
 import './cardPostStyles.css'
 
 // @ts-ignore
@@ -8,21 +9,44 @@ import iconEdit from '../../assets/icon_edit.png'
 
 import { User } from "../../validations/user"
 import { ButtonSecondary, ButtonPrimary } from "../button/Button"
-import { recoverLogin } from "../../config/utils"
+import { recoverLogin, recoverPost } from "../../config/utils"
 import Form from "../form/Form"
 import { useState } from "react"
 import Input from "../input/Input"
+import { FIELD_POSTS_IN_STORAGE } from "../../config/const"
+import z from 'zod'
 
 interface CardProps {
     post: Post;
     user?: User
 }
 
-
-
 export default function CardPost({ post, user }: CardProps) {
     const sessionUser = recoverLogin()
     const [editPost, setEditPost] = useState<boolean>(false)
+
+    const savePost = (data: any) => {
+
+        const dataPost = data as z.infer<typeof createPost>
+        
+        const posts = recoverPost()
+
+        try {
+            const validatePost = createPost.parse(data)
+
+            posts.forEach(p => {
+                if(p.id != post.id) {
+                    return
+                }
+    
+                return {...p, ...validatePost}
+            })
+
+            localStorage.setItem(FIELD_POSTS_IN_STORAGE, JSON.stringify(posts))
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className="cardPost">
@@ -34,7 +58,7 @@ export default function CardPost({ post, user }: CardProps) {
 
                 {post.userId == sessionUser?.id && (
                     <div>
-                        <ButtonSecondary icon={iconEdit} handlerClick={() => setEditPost(!editPost)}/>
+                        <ButtonSecondary icon={iconEdit} handlerClick={() => setEditPost(!editPost)} />
                     </div>
                 )}
             </div>
@@ -53,12 +77,12 @@ export default function CardPost({ post, user }: CardProps) {
 
             {editPost && (
                 <Form
-                    handleSubmit={() => console.log("editar post")}
+                    handleSubmit={savePost}
                     render={({ handleChange }) => {
                         return (
                             <>
-                                <Input type="text" field="Titulo" name="title" handleChange={handleChange} />
-                                <Input type="text" field="Contenido" name="body" handleChange={handleChange} />
+                                <Input value={post.title} type="text" field="Titulo" name="title" handleChange={handleChange} />
+                                <Input value={post.body} type="text" field="Contenido" name="body" handleChange={handleChange} />
                                 <ButtonPrimary isSubmit title="Guardar" />
                             </>
                         )

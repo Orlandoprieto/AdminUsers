@@ -1,4 +1,4 @@
-import { useId } from "react"
+import { useId, useState } from "react"
 import './inputStyle.css'
 
 interface InputProps {
@@ -12,14 +12,21 @@ interface InputProps {
 export default function Input({ field, type, value, name, handleChange }: InputProps) {
    const id = useId()
 
+   const [valueInput, setValueInput] = useState<string>(value ?? '')
+
+   const updatetextInput = (e : any) => {
+      setValueInput(e.target.value)
+      handleChange(name, e.target.value)
+   }
+
    return (
       <div className="container-input">
          <label htmlFor={id}>{ field }</label>
 
          <input
-            value={value}
+            value={valueInput}
             className="input"
-            onChange={(e) => handleChange(name, e.target.value)}
+            onChange={updatetextInput}
             id={id}
             name={name}
             type={type}

@@ -12,6 +12,8 @@ export default async function fetchUsers() {
         const response = await axios.get(URL_USERS);
         const data = response.data
 
+        console.log(data)
+
         const dataParse = parser(data)
 
         console.log(dataParse)
@@ -35,6 +37,7 @@ function parser(data: any) {
         ))
 
     } catch (error) {
+        console.log("holisss")
         console.error('Error al parsear los usuarios:', error);
     }
 }

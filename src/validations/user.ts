@@ -6,7 +6,7 @@ export const user = z.object({
     username: z.string().min(2, { message: "Falta el nombre del usuario" }).default(''),
     email: z.string().email({ message: "Correo electrónico nulo o invalido" }).default(''),
     password: z.string().default(''),
-    role: z.enum(['admin', 'user'], { message: "Debe seleccionar uno de los siguientes roles: admin, user" }),
+    role: z.enum(['admin', 'user'], { message: "Debe seleccionar uno de los siguientes roles: admin, user" }).optional(),
 })
 
 export const createUser = user.extend({
