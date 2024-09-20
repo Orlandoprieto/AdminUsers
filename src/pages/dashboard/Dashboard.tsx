@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { recoverLogin } from "../../config/utils"
 import './dashboardStyles.css'
 import { ButtonSecondary } from "../../components/button/Button"
-import ContanierListPosts from "../../components/create/ContainerListPost"
-import ContanierListUsers from "../../components/create/ContanierListUsers"
+import ContanierListPosts from "../../components/container list/ContainerListPost"
+import ContanierListUsers from "../../components/container list/ContanierListUsers"
 import fetchPost from "../../services/fetchPosts"
 import { FIELD_POSTS_IN_STORAGE } from "../../config/const"
 import { closeSesionUser } from "../../config/utils"
