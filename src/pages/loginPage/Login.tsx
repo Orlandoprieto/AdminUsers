@@ -8,14 +8,15 @@ import z, { ZodError } from 'zod';
 import { loginUser, user } from '../../validations/user';
 import { useNavigate } from 'react-router-dom';
 import { FIELD_USERS_IN_STORAGE, FIELD_USER_SESION } from '../../config/const';
+import { useErrorHandler } from '../../hook/useErrorHandler';
 
 // @ts-ignore
 import icon from '../../assets/iconUsers.png'
 
 export default function Login() {
+   const {messageError, handleError, resetError} = useErrorHandler()
+   
    const navigate = useNavigate()
-
-   const [messageError, serMessageError] = useState<string>('')
 
    type User = z.infer<typeof user>
 
@@ -39,20 +40,11 @@ export default function Login() {
 
          localStorage.setItem(FIELD_USER_SESION, JSON.stringify(findUser))
 
-
+         resetError()
          navigate('/dashboard')
 
       } catch (err) {
-         if(err instanceof ZodError) {
-            const errorZod = err as ZodError
-            console.log(errorZod)
-
-            serMessageError(errorZod.errors[0].message)
-            return
-         }
-
-         const error = err as Error
-         serMessageError(error.message)
+         handleError(err)
       }
    }
 

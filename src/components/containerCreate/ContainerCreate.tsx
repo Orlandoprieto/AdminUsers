@@ -7,20 +7,18 @@ import { user } from '../../validations/user'
 import { post } from '../../validations/post'
 import { PASSWORD_DEFAULT } from '../../config/const'
 import { useState } from 'react'
-import { ZodError } from 'zod'
-
+import { useErrorHandler } from '../../hook/useErrorHandler';
 
 interface ContainerListPostProps {
    create: "post" | "user"
 }
 
 export default function ContanierCreate({ create }: ContainerListPostProps) {
-   const [messageError, serMessageError] = useState<string>('')
    const [messageCompleted, serMessageCompleted] = useState<string>('')
+   const { messageError, handleError, resetError } = useErrorHandler()
 
    const hanlerCreateUser = (data: any) => {
-      serMessageCompleted("")
-      serMessageError("")
+      resetError()
 
       const users = recoverUsers()
 
@@ -45,22 +43,12 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
          serMessageCompleted("Usuario creado con exito")
 
       } catch (err) {
-         if(err instanceof ZodError) {
-            const errorZod = err as ZodError
-            console.log(errorZod)
-
-            serMessageError(errorZod.errors[0].message)
-            return
-         }
-
-         const error = err as Error
-         serMessageError(error.message)
+         handleError(err)
       }
    }
 
    const hanlerCreateUPost = (data: any) => {
-      serMessageCompleted("")
-      serMessageError("")
+      resetError()
 
       const posts = recoverPost()
       const user = recoverLogin()
@@ -79,16 +67,7 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
          serMessageCompleted("Post creado con exito")
 
       } catch (err) {
-         if(err instanceof ZodError) {
-            const errorZod = err as ZodError
-            console.log(errorZod)
-
-            serMessageError(errorZod.errors[0].message)
-            return
-         }
-
-         const error = err as Error
-         serMessageError(error.message)
+         handleError(err)
       }
    }
 
@@ -128,7 +107,7 @@ export default function ContanierCreate({ create }: ContainerListPostProps) {
                               <Input type="text" field="Nombre de Usuario" name="username" handleChange={handleChange} />
                               <Input type="email" field="Correo electronico" name="email" handleChange={handleChange} />
                               <select defaultValue='user' onChange={(e) => handleChange("role", e.target.value)}>
-                                 <option  value="admin">Administrador</option>
+                                 <option value="admin">Administrador</option>
                                  <option value="user">Usuario</option>
                               </select>
                               <ButtonPrimary isSubmit title={`Guardar ${create}`} />
